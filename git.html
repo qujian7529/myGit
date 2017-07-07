@@ -14,7 +14,7 @@ git status
 git diff file.txt
 
 
-<!-- 版本控制系统  git log 命令 查看历史记录 -->
+<!-- 版本控制系统  git log 命令 查看“提交”历史记录 -->
 git log
 
 
@@ -26,5 +26,53 @@ git log --pretty=oneline
 HEAD  HEAD^  HEAD^^  HEAD~100
 
 
-<!-- 退回上一个版本 -->
+<!-- 退回上一个版本  回到过去版本-->
 git reset --hard HEAD^
+
+
+<!-- 重返现在版本  需要指定id 才能回去-->
+<!-- log 看不到了。。 -->
+git reset --hard id
+
+
+ <!-- 查看”命令“历史 -->
+git reflog
+
+
+<!-- 工作区  暂存区 -->
+工作区 ==> myGit   
+.git ==> git 的版本库stage 包含 暂存区master  HEAD指向 master
+
+
+<!-- 为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件 -->
+
+
+
+<!-- 将该文件在工作区的修改全部撤销 -->
+<!--  ’杠杠’ 很重要  就变成了“切换到另一个分支”的命令
+ 1. 文件修改未放到暂存区  现在撤销修改就回到版本库一模一样
+2. 文件已经添加到暂存区后  又做了修改  现在撤销修改就会回到添加到暂存区后的状态 -->
+git checkout -- readme.txt  
+
+
+<!-- 可以吧暂存区的修改撤销掉  重新放回工作区 -->
+git reset HEAD file
+
+<!-- 
+文件的删除     当你在工作区 rm file  版本库 与工作区不同
+可以 ,git commit  -->  
+ git rm file 
+
+<!-- 删错了  找回 ， 即撤销 -->
+ git checkout -- file
+
+
+
+
+<!-- 远程仓库 -->
+
+<!-- 可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。 -->
+
+
+ git remote add origin git@github.com:qujian7529/qujian.git
+
