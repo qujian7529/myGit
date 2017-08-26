@@ -1,3 +1,5 @@
+<!-- 创建本地仓库 -->
+git init
 <!-- 监听field1.txt add 只会add监听一个文件夹 -->
 git add file.txt  
 
@@ -72,7 +74,17 @@ git reset HEAD file
 <!-- 远程仓库 -->
 
 <!-- 可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。 -->
+<!-- 关联远程仓库 -->
+git remote add origin https://github.com/qujian7529/qujian.git
+git remote add origin git@github.com:qujian7529/qujian.git
 
+<!-- 同步到本地 -->
+git pull
 
- git remote add origin git@github.com:qujian7529/qujian.git
+<!-- 提交到远程仓库  master 分支 -->
+git push origin master
+<!--第一次的时候 -->
+git push -u origin master
 
+<!-- 克隆项目 -->
+git clone https://github.com/wangleihd/freeBook-H5.git
