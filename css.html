@@ -19,7 +19,41 @@
     <style>
       /*@import  css的引入方式*/
       /*@import url(http://www.dreamdu.com/style.css);*/
-      
+      .parent{
+            /* 启用弹性盒布局 */
+            display: flex;
+            /* 使子元素水平居中 */
+            justify-content: center;
+            /* 使子元素垂直居中 */
+            align-items: center;
+            height: 200px;
+            background-color: #fcf;
+      }
+      .child{
+        height:100px;
+        width:40%;
+        background-color:#ccc;
+      }
+
+      /*绝对居中*/
+      .parent2{
+           position: relative;
+             /* 父元素可以有绝对或相对大小，也可以仅由其内容决定其大小 */
+            width: 50%;
+            height: 200px;
+            background-color: aquamarine;
+      }
+    
+      .poscent{
+        position: absolute;
+        margin:auto;
+        /* 将上下左右边距（相对于父元素边缘）全设为0，使浏览器推算出的外边距上下、左右对应相等
+             可以设置任何其他相等的值，但如果父元素小到不能容下任意一个方向的两侧边距，元素也将不居中，所以推荐设为0 */
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
     </style>
   </head>
   <body>
@@ -39,5 +73,17 @@
       <div>meta:
         <a herf="http://www.css88.com/archives/8052#">meta的作用</a>
       </div>
+      <div class="row" >
+        <div class="col-md-4 parent">
+          <div class="child">
+          </div>
+        </div>
+        <div class="col-md-4 parent2">
+            <div class="child poscent">
+              
+            </div>
+        </div>
+      </div>
   </body>
 </html>
+
