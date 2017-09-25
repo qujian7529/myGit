@@ -161,3 +161,118 @@ tar 文件解压:
     mount -t nfs IP:/nfs_root_dir /mount_nfs
     挂载成功后操作本地的mount_nfs目录就相当于操作远端的nfs_root_dir目录了
     
+## SSH服务器
+SSH 为建立在应用层和传输层基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。SSH在正确使用时可弥补网络中的漏洞。SSH客户端适用于多种平台。几乎所有UNIX平台—包括HP-UX、Linux、AIX、Solaris、Digital UNIX、Irix，以及其他平台，都可运行SSH。
+1.检查
+
+    dpkg -s openssh-server
+    dpkg -s openssh-client
+
+2.安装
+
+    sudo apt-get update
+    sudo apt-get install openssh-server
+    sudo apt-get install openssh-client
+3.配置
+    
+    /etc/ssh/sshd_config
+    
+    展示其中一个片段：
+    # Package generated configuration file
+    # See the sshd_config(5) manpage for details
+    # What ports, IPs and protocols we listen for
+    Port 22
+    # Use these options to restrict which interfaces/protocols sshd will bind to
+    #ListenAddress ::
+    #ListenAddress 0.0.0.0
+    Protocol 2
+    # HostKeys for protocol version 2
+    HostKey /etc/ssh/ssh_host_rsa_key
+    HostKey /etc/ssh/ssh_host_dsa_key
+    HostKey /etc/ssh/ssh_host_ecdsa_key
+    HostKey /etc/ssh/ssh_host_ed25519_key
+    #Privilege Separation is turned on for security
+    UsePrivilegeSeparation yes
+
+    # Lifetime and size of ephemeral version 1 server key
+    KeyRegenerationInterval 3600
+    ServerKeyBits 1024
+
+    # Logging
+    SyslogFacility AUTH
+    LogLevel INFO
+
+    # Authentication:
+    LoginGraceTime 120
+    PermitRootLogin without-password
+    StrictModes yes
+
+    RSAAuthentication yes
+    PubkeyAuthentication yes
+    #AuthorizedKeysFile %h/.ssh/authorized_keys
+
+    # Don't read the user's ~/.rhosts and ~/.shosts files
+    IgnoreRhosts yes
+    # For this to work you will also need host keys in /etc/ssh_known_hosts
+    RhostsRSAAuthentication no
+    # similar for protocol version 2
+    HostbasedAuthentication no
+    # Uncomment if you don't trust ~/.ssh/known_hosts for RhostsRSAAuthentication
+    #IgnoreUserKnownHosts yes
+
+    # To enable empty passwords, change to yes (NOT RECOMMENDED)
+    PermitEmptyPasswords no
+
+    # Change to yes to enable challenge-response passwords (beware issues with
+    # some PAM modules and threads)
+    ChallengeResponseAuthentication no
+
+    # Change to no to disable tunnelled clear text passwords
+    #PasswordAuthentication yes
+
+    # Kerberos options
+    #KerberosAuthentication no
+    #KerberosGetAFSToken no
+    #KerberosOrLocalPasswd yes
+    #KerberosTicketCleanup yes
+
+    # GSSAPI options
+    #GSSAPIAuthentication no
+    #GSSAPICleanupCredentials yes
+
+    X11Forwarding yes
+    X11DisplayOffset 10
+    PrintMotd no
+    PrintLastLog yes
+    TCPKeepAlive yes
+    #UseLogin no
+
+    #MaxStartups 10:30:60
+    #Banner /etc/issue.net
+
+    # Allow client to pass locale environment variables
+    AcceptEnv LANG LC_*
+
+    Subsystem sftp /usr/lib/openssh/sftp-server
+    port 设置sshd监听的端口号。
+4.参数
+
+    ListenAddress 设置sshd服务器绑定的IP地址
+    HostKey 设置包含计算机私人密匙的文件
+    ServerKeyBits 定义服务器密匙的位数
+    LoginGraceTime 设置如果用户不能成功登录,在切断连接之前服务器需要等待的时间(以秒为单位)。
+    KeyRegenerationInterval 设置在多少秒之后自动重新生成服务器的密匙(如果使用密匙)。重新生成密匙是为了防止用盗用的密匙解密被截获的信息。
+    PermitRootLogin 设置 root 能不能用ssh登录。这个选项一定不要设成yes。
+    X11Forwarding 设置是否允许 X11 转发
+5.操作
+
+    启动
+    service ssh start
+    重启
+    service ssh restart
+    停止
+    service ssh stop
+6.使用
+
+    ssh linx@IP
+    输入密码　既可以操作该ip电脑文件
