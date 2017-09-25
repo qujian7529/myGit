@@ -13,4 +13,29 @@
 
 ## 变量与操作
 支持　&& || ! ,支持 ++、--,+= /= 等复合语句,支持位运算
-var
+
+    v=""
+    echo "$v"
+
+对空格要求严格
+基本操作
+
+    a="10"
+    b=3
+    ret=`expr $a + $b`
+    ret=`expr $a % $b`
+
+expr实现算数操作
+
+    ret=`expr $a + $b`
+    ret=`expr $a % $b`
+    ret=`expr $a \* $b`
+
+let实现操作
+    
+    let "ret= a + b"
+    let "ret= a ** b"
+    let "a = a << 2"
+    let "a /= b"
+    let "a++"
+    
