@@ -43,7 +43,11 @@
             height: 200px;
             background-color: aquamarine;
       }
-    
+      .parent3{
+           position: relative;
+           width: 200px; 
+           height: 200px;
+      }
       .poscent{
         position: absolute;
         margin:auto;
@@ -53,6 +57,15 @@
         right: 0;
         top: 0;
         bottom: 0;
+      }
+      .posc{
+        position: absolute; 
+        left: 50%;          
+        top: 50%;
+        width: 100px;       
+        height: 100px;
+        margin-left: -50px; 
+        margin-top: -50px;  /* 需根据宽高计算偏移量 */
       }
     </style>
   </head>
@@ -80,6 +93,11 @@
         </div>
         <div class="col-md-4 parent2">
             <div class="child poscent">
+              
+            </div>
+        </div>
+        <div class="col-md-4 parent3">
+            <div class="child posc">
               
             </div>
         </div>
