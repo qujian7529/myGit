@@ -39,14 +39,18 @@
       .parent2{
            position: relative;
              /* 父元素可以有绝对或相对大小，也可以仅由其内容决定其大小 */
-            width: 50%;
             height: 200px;
             background-color: aquamarine;
       }
-      .parent3{
-           position: relative;
-           width: 200px; 
-           height: 200px;
+      .parent4{
+        position: relative;
+        height: 200px;
+        background-color: #1EA877
+      }
+      .parent5{
+        position: relative;
+        height: 200px;
+        background-color: #ACD8CC
       }
       .poscent{
         position: absolute;
@@ -58,14 +62,54 @@
         top: 0;
         bottom: 0;
       }
-      .posc{
-        position: absolute; 
-        left: 50%;          
-        top: 50%;
-        width: 100px;       
+      .before_p1 {
+        height: 200px;
+        background-color: #6F3535;
+        font-size: 0; /* 必须要设置 */
+      }
+      .before_p1::before {
+        display: inline-block;
+        content: '';          
+        height: 100%;
+        vertical-align: middle;
+      }
+      .before_p1 .before_c1 {
+        display: inline-block;
         height: 100px;
-        margin-left: -50px; 
-        margin-top: -50px;  /* 需根据宽高计算偏移量 */
+         width: 100px;
+        vertical-align: middle;
+        background-color: #CDB777;
+
+      }
+      .posc2{
+        position: absolute; /* fixed 同理 */
+        left: 0; 
+        top: 0; 
+        bottom: 0; 
+        right: 0; /* 定位为 0 */
+        height: 100px;
+        margin: auto; /* 不用计算偏移量 */
+      }
+      .posc3{
+        position: absolute; /* fixed 同理 */
+        left: 50%; 
+        top: 50%;
+        height: 100px;
+        transform: translate(-50%,-50%);
+      }
+      .table_p1 {
+        display: table;
+        height: 200px;
+        background-color: #6C2A68;
+      }
+      .table_p1 .inner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+      }
+      .table_p1 .table_c1 {
+         display: inline-block; 
+         height: 100px;
       }
     </style>
   </head>
@@ -96,12 +140,28 @@
               
             </div>
         </div>
-        <div class="col-md-4 parent3">
-            <div class="child posc">
+        <div class="col-md-4 before_p1">
+            <div class=" before_c1">
               
             </div>
         </div>
       </div>
+      <div class="row">
+         <div class="col-md-4 parent4">
+            <div class="child posc2">
+            </div>
+        </div>
+        <div class="col-md-4 parent5">
+            <div class="child posc3">
+            </div>
+        </div>
+        <div class="col-md-4 table_p1">
+            <div class=" inner">
+                <div class="table_c1 child"></div>
+            </div>
+        </div>
+      </div>
+      <!-- fiex 布局：http://ife.baidu.com/note/detail/id/952 -->
   </body>
 </html>
 
